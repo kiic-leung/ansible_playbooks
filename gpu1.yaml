@@ -1,0 +1,10 @@
+- hosts: gpu1
+  remote_user: ubuntu
+  gather_facts: no
+  tasks:
+    - name: 下载包
+      command: echo "download to {{ download_dest }}"
+    - name: copy fastboot.sh to client
+      copy: src=./fastboot.sh dest=/home/ubuntu/fastboot.sh
+    - name: fastboot device
+      command: bash /home/ubuntu/fastboot.sh {{ device_id }}
